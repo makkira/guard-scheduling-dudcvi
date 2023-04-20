@@ -1,5 +1,5 @@
 export interface Contract {
-    Name: string,
-    ShiftSchedule: string[],
-    RequiresArmed: boolean,
+  Name: string;
+  ShiftSchedule: string[];
+  RequiresArmed: boolean;
 }

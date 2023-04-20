@@ -1,9 +1,12 @@
 import express, { Request, Response } from "express";
 import { Guard } from "@exmpl/models/Guard";
-import { CreateGuard, DeleteGuard, guards } from "@exmpl/services/guardService";
+import { CreateGuard, DeleteGuard } from "@exmpl/services/guardService";
 
 export const router = express.Router();
 
+/*
+    Routers for creating new guard and deleting
+*/
 router.post("/guards", async (req: Request, res: Response) => {
   try {
     const guard: Guard = req.body;
@@ -14,8 +17,8 @@ router.post("/guards", async (req: Request, res: Response) => {
   }
 });
 
-router.delete("/guards", async (req: Request, res: Response) => {
-  const guardName = req.body.Name;
+router.delete("/guards/:Name", async (req: Request, res: Response) => {
+  const guardName = req.params.Name;
   DeleteGuard(guardName);
   res.status(200).send(`${guardName} deleted successfully`);
 });

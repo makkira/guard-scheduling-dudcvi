@@ -1,8 +1,13 @@
 import express from "express";
-import { exampleRouter } from "./endpoints/example";
+import { router as contractRouter } from "./Routes/contractRouter";
+import { router as guardRouter } from "./Routes/guardRouter";
+import { router as ptoRouter } from "./Routes/ptoRouter";
 
 const app = express();
 app.use(express.json());
-app.use("/", exampleRouter);
+
+app.use("/api", guardRouter);
+app.use("/api", contractRouter);
+app.use("/api", ptoRouter);
 
 export default app;

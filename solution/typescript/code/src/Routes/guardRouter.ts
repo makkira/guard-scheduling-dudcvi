@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import { Guard } from "@exmpl/models/Guard";
-import { CreateGuard, DeleteGuard } from "@exmpl/services/guardService";
+import { Guard } from "./../models/Guard";
+import { CreateGuard, DeleteGuard } from "./../services/guardService";
 
 export const router = express.Router();
 
@@ -10,15 +10,21 @@ export const router = express.Router();
 router.post("/guards", async (req: Request, res: Response) => {
   try {
     const guard: Guard = req.body;
-    const newEntry = await CreateGuard(guard);
-    res.status(201).json(newEntry);
-  } catch (err) {
-    res.status(400).send("Failed to Create Guard");
+    CreateGuard(guard);
+    res.status(201).send(`${guard.Name} created successfully`);
+  } catch (err: any) {
+    res.status(400).send(err.message);
   }
 });
 
-router.delete("/guards/:Name", async (req: Request, res: Response) => {
-  const guardName = req.params.Name;
-  DeleteGuard(guardName);
-  res.status(200).send(`${guardName} deleted successfully`);
+router.delete("/guards/:name", async (req: Request, res: Response) => {
+  try {
+    const guardName = req.params.name;
+    DeleteGuard(guardName);
+    res.status(201).send(`${guardName} deleted successfully`);
+  } catch (err: any) {
+    res.status(404).send(err.message);
+  }
 });
+
+export default router;

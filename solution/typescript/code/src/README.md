@@ -35,7 +35,7 @@
 - Grab only the contracts that start before or on the given end date.
 - Create all available shifts with the requirements.
 - Assign each shift to guards by:
-  - Checking if they are available on `shift.day` considering license and PTO
+  - Checking if they are available on `shift.day` considering license and PTO.
   - Grabbing the guard with the least overtime or the least hours worked.
 
 ### Detailed Explanation

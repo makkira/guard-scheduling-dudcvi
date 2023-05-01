@@ -238,6 +238,7 @@ function calculateWeeklyOvertime(
         daysWorked.push(shiftDate.toISOString());
       }
     } else {
+      // a better check would be if they worked 4+ contigious shifts.
       if (daysWorked.length === 7) {
         overtime += Math.max(contiguousHoursWorked - 40, 0);
       }
